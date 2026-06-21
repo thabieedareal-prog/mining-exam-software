@@ -1,0 +1,82 @@
+{
+  "name": "mining-exam-software",
+  "version": "1.0.0",
+  "description": "Professional mining examination software with Electron and React",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "author": "Mining Exam Team",
+  "license": "MIT",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "electron-start": "electron .",
+    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron-start\"",
+    "build": "npm run react-build && electron-builder",
+    "build-win": "npm run react-build && electron-builder --win",
+    "build-mac": "npm run react-build && electron-builder --mac",
+    "build-linux": "npm run react-build && electron-builder --linux"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sqlite3": "^5.1.6",
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "jspdf": "^2.5.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "electron": "^latest",
+    "electron-builder": "^24.6.4",
+    "react-scripts": "5.0.1",
+    "concurrently": "^8.2.0",
+    "wait-on": "^7.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.mining.exam",
+    "productName": "Mining Exam Software",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "public/electron.js",
+      "public/preload.js"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "win": {
+      "target": [
+        "NSIS",
+        "portable"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.education"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Education"
+    }
+  }
+}
